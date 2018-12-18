@@ -10,7 +10,7 @@
     <ContentPage.Content Type="{x:Type local:ContactsPageCS}">
 
         <StackLayout >
-            <Label x:Name="txtLabel" TextColor="{Binding Source={StaticResource textColor}}"  Text="Home Page content" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+            <Label x:Name="txtLabel" TextColor="{Binding Source={StaticResource textColor}}"  Text="" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
