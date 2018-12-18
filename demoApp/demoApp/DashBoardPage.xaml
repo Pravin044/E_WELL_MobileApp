@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:Class="E_WELL.DashBoard"
+              Title="DashBoard" Padding="5" BackgroundImage="BackgroundImage.jpg" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Frame BorderColor="Silver" Grid.Row="0" Grid.Column="0" HeightRequest="30">
+                <Frame.Content>
+                    <Label x:Name="txtData" Text="Information" Font="50" TextColor="DarkOrange" VerticalTextAlignment="Center" HorizontalOptions="CenterAndExpand"/>
+                </Frame.Content>
+            </Frame>
+            <Frame BorderColor="Silver"  Grid.Column="1" Grid.Row="0">
+                <Frame.Content>
+                    <microcharts:ChartView x:Name="PointChartModel" HeightRequest="30"/>
+                </Frame.Content>
+            </Frame>
+        </Grid>
+        <Frame BorderColor="Silver" Grid.Row="1">
+            <Frame.Content>
+                <microcharts:ChartView x:Name="LineChartModel"  HeightRequest="70"/>
+            </Frame.Content>
+        </Frame>
+    </Grid>
+</ContentPage>

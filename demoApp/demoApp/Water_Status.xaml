@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.Water_Status" Title="Water status" BackgroundImage="BackgroundImagepart2.jpg" >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="0" Grid.Row="0">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Water Level (%)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding WaterLevel}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="1" Grid.Row="0">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+
+                        </Grid.RowDefinitions>
+                        <Label Text="Water Pressure (Pa)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding WaterPressure}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="0" Grid.Row="1">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Water Flow Rate (m^3/s)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding WaterFlow}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

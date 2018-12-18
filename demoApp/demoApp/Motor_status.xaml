@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.Motor_status" Title="Motor Status" BackgroundImage="BackgroundImagepart1.jpg" >
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="0" Grid.Row="0">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="3*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Motor Status" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding MotorStatus,Mode=TwoWay}" FontAttributes="Bold" FontSize="Large" Grid.Row="1"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                        <StackLayout Grid.Row="2" Margin="5" >
+                            <Button x:Name="btnStart" CornerRadius="2" Image="start.png"  BackgroundColor="Transparent" VerticalOptions="Fill" HorizontalOptions="Fill" Clicked="btnStart_Clicked"/>
+                        </StackLayout>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="1" Grid.Row="0">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                            
+                        </Grid.RowDefinitions>
+                        <Label Text="Voltage Status (V)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Voltage,Mode=TwoWay}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"  VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="0" Grid.Row="1">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Current Status (A)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding Current , Mode=TwoWay}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+            <Frame CornerRadius="4" Margin="15,30,15,30" Grid.Column="1" Grid.Row="1">
+                <Frame.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2*"/>
+                            <RowDefinition Height="2*"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Motor Load Status (kW)" FontAttributes="Bold" Grid.Row="0" FontSize="Large" VerticalTextAlignment="Start" HorizontalTextAlignment="Center"/>
+                        <Label Text="{Binding MotorLoad, Mode=TwoWay}" FontAttributes="Bold" FontSize="60" Grid.RowSpan="2"   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
+                    </Grid>
+                </Frame.Content>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

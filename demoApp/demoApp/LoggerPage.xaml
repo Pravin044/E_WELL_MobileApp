@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.LoggerPage" Title="Logger" BackgroundImage="BackgroundImage.jpg" >
+    <ContentPage.Content>
+        <StackLayout>
+            <Editor x:Name="txtTextAdd"  />
+            <Button x:Name="btnAddTest" Text="Add text" Clicked="BtnAddTest_Clicked" />
+            <Label x:Name="txtlabel"  Text="{Binding Label}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>

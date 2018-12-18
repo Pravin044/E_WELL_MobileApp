@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:E_WELL"
+             x:Class="E_WELL.MasterPage"
+              NavigationPage.HasNavigationBar="True" NavigationPage.HasBackButton="True" Title="Content"  BackgroundImage="grass.jpg">
+
+    <ContentPage.Content>
+        <StackLayout>
+        <StackLayout>
+            <Image Source="masterpage.jpg"/>
+        </StackLayout>
+        <Button Margin="10"  WidthRequest="50" Image="appbar.home.png" x:Name="btnHomePage" Text="Home" Clicked="BtnHomePage_Clicked"/>
+        <Button Margin="10"  WidthRequest="50" x:Name="btnDashboardPage" Text="Dashboard" Clicked="BtnDashboardPage_Clicked"/>
+        <Button Margin="10" WidthRequest="50" x:Name="btnLoggerPage" Text="Logger" Clicked="BtnLoggerPage_Clicked"/>
+        <Button Margin="10" WidthRequest="50" x:Name="btnAboutpage" Text="About" Clicked="BtnAboutpage_Clicked"/>
+
+        <!--<Image Source="image\android-contact.png" BackgroundColor="WhiteSmoke"/>
+        <ListView x:Name="listView" x:FieldModifier="public" RowHeight="60" BackgroundColor="#767d93" >
+            <ListView.ItemsSource >
+                <x:Array Type="{x:Type local:masterPageItem}">
+                    <local:masterPageItem Title="Home" IconSource="icon.png" TargetType="{x:Type local:HomePage}" />
+                    <local:masterPageItem Title="DashBoard" IconSource=" image\android-contact.png" TargetType="{x:Type local:DashBoard}" />
+                    <local:masterPageItem Title="Logger" IconSource="image\android-contact.png" TargetType="{x:Type local:LoggerPage}" />
+                    <local:masterPageItem Title="About" IconSource=" image\android-contact.png" TargetType="{x:Type local:AboutPage}" />
+                </x:Array>
+            </ListView.ItemsSource>
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <ViewCell >
+                        <StackLayout Margin="10,10,10,10" BackgroundColor="Silver">
+                            <Grid >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Image Source="{Binding IconSource}" />
+                                <Label Grid.Column="1" Text="{Binding Title}" FontSize="Large" HeightRequest="40"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>-->
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

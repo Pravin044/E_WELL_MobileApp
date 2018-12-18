@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.ConfigurationPage" BackgroundImage="BackgroundImage.jpg" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Save.png" x:Name="btnSaveConfig" Clicked="BtnSaveConfig_Clicked"/>
+        <ToolbarItem Icon="open.png" x:Name="btnImportConfig" Clicked="BtnImportConfig_Clicked"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ListView  x:Name="listView" ItemTapped="ListView_ItemTapped" BindingContext="ConfigurationModel">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                        <Label x:Name="txtTitle" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White" Margin="5,0,0,0"/>
+                        <Label x:Name="txtSubtitle" Text="{Binding Subtitle}" FontSize="Small" TextColor="White" Margin="5,0,0,0"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+              
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.HomeTabbedPage" Title="Home" BackgroundImage="BackgroundImage.jpg">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="btnConfiguration" Text="Configuration" Order="Secondary" Clicked="BtnConfiguration_Clicked"/>
+        <ToolbarItem x:Name="btnSettings" Text="Settings" Order="Secondary" Clicked="BtnSettings_Clicked"/>
+        <ToolbarItem x:Name="btnRecordData" Icon="recordicon.png" Clicked="BtnRecordData_Clicked" />
+       
+    </TabbedPage.ToolbarItems>
+</TabbedPage>

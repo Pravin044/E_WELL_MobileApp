@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.HomePage" Title="Home" x:Name="homepage" BackgroundColor="{Binding Source={StaticResource backgroundColor}}" >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="btnConfiguration" Text="Configuration" Order="Secondary" Clicked="BtnConfiguration_Clicked"/>
+        <ToolbarItem x:Name="btnSettings" Text="Settings" Order="Secondary" Clicked="BtnSettings_Clicked"/>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content Type="{x:Type local:ContactsPageCS}">
+
+        <StackLayout >
+            <Label x:Name="txtLabel" TextColor="{Binding Source={StaticResource textColor}}"  Text="Home Page content" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

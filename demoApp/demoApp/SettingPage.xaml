@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="E_WELL.SettingPage" Title="Settings" BackgroundImage="BackgroundImage.jpg">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="Save.png"  Clicked="SaveSettings_clicked" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content WidthRequest="250">
+        <Frame BorderColor="Gray" BackgroundColor="WhiteSmoke" CornerRadius="5" Padding="10">
+            <Frame.Content>
+                <StackLayout>
+                    <Label Text="Application Setting" BackgroundColor="Orange" FontAttributes="Bold" TextColor="{Binding Source={StaticResource textColor}}"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" Grid.Column="0" Text="Test Name" FontAttributes="Bold" TextColor="{Binding Source={StaticResource textColor}}"/>
+                        <Editor x:Name="txtTextName" Grid.Row="0" Grid.Column="1" Text=""/>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Theam" FontAttributes="Bold" TextColor="{Binding Source={StaticResource textColor}}"/>
+                        <Switch Grid.Row="1" Grid.Column="1" x:Name="btnTheam" Toggled="BtnTheam_Toggled" />
+                        
+
+                    </Grid>
+                </StackLayout>
+            </Frame.Content>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>
