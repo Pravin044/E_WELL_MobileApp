@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:E_WELL"
              x:Class="E_WELL.MainPage" Title="demo" MasterBehavior="Popover" Padding="0,40,0,0" BackgroundImage="BackgroundImage.jpg"  NavigationPage.HasNavigationBar="True">
     <MasterDetailPage.ToolbarItems>
-        <ToolbarItem x:Name="btnConnectToMqtt" Icon="plug_in.png" Clicked="BtnConnectToMqtt_Clicked" />
+        <ToolbarItem x:Name="btnConnectToMqtt" Icon="plug_in.png" Order="Primary" Clicked="BtnConnectToMqtt_Clicked" />
     </MasterDetailPage.ToolbarItems>
     <MasterDetailPage.Master>
         <local:MasterPage x:Name="masterPage" />

@@ -11,7 +11,7 @@ using Xamarin.Forms.Xaml;
 namespace E_WELL
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DashBoard : ContentPage
+    public partial class WaterLevelGraphical : ContentPage
     {
         private readonly List<Microcharts.Entry> _entries = new List<Microcharts.Entry>()
            {
@@ -24,7 +24,7 @@ namespace E_WELL
                }
            };
 
-        public DashBoard()
+        public WaterLevelGraphical()
         {
             InitializeComponent();
             LineChartModel.Chart = new LineChart { Entries = _entries};

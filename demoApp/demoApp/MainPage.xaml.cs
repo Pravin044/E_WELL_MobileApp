@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Android.Content;
+using Android.OS;
+using System;
 using System.Text;
 using uPLibrary.Networking.M2Mqtt;
 using uPLibrary.Networking.M2Mqtt.Messages;
@@ -10,28 +12,49 @@ namespace E_WELL
     {
         MqttClient client;
         string DataRecived { get; set; }
-        DataInformation data = new DataInformation();
+        readonly DataInformation data = new DataInformation();
         public MainPage()
         {
             InitializeComponent();
+            Device.BeginInvokeOnMainThread(StartMqtt);
+            data.SendEvent = new CommandAction(SendToDevice);
+            BindingContext = data;
+
+        }
+
+        private void SendToDevice(object obj)
+        {
+            if(client != null && client.IsConnected)
+            {
+                client.Publish("E-well-control", Encoding.UTF8.GetBytes(obj.ToString()));
+            }
+        }
+
+        private void StartMqtt()
+        {
             Connect();
             Subscribe();
             if (client.IsConnected)
             {
                 btnConnectToMqtt.Icon = "plugOut.png";
             }
-
         }
 
         private void Connect()
         {
             try
             {
+                if ( client != null && client.IsConnected)
+                {
+                    client.MqttMsgPublishReceived -= Client_MqttMsgPublishReceived;
+                    client.Disconnect();
+                    client = null;
+                }
                 client = new MqttClient("broker.hivemq.com");
 
                 if (client != null)
                 {
-                    DeviceConnected();
+                    byte code = client.Connect(Guid.NewGuid().ToString());
                     client.MqttMsgPublishReceived += Client_MqttMsgPublishReceived; ;
 
                 }
@@ -63,6 +86,7 @@ namespace E_WELL
             {
                 if (client.IsConnected)
                 {
+                    client.MqttMsgPublishReceived -= Client_MqttMsgPublishReceived;
                     client.Disconnect();
                 }
 
@@ -81,15 +105,16 @@ namespace E_WELL
             {
                 DataRecived = (Encoding.UTF8.GetString(e.Message)).ToString();
                 data.WaterData = DataRecived.Split('/')[1];
-                data.WaterLevel = DataRecived.Split('/')[1].Split('.')[1];
-                data.WaterPressure = DataRecived.Split('/')[1].Split('.')[2];
-                data.WaterFlow = DataRecived.Split('/')[1].Split('.')[3];
-                data.MotorStatus = DataRecived.Split('/')[2].Split('.')[1];
-                data.Voltage = DataRecived.Split('/')[2].Split('.')[2];
-                data.MotorLoad = DataRecived.Split('/')[2].Split('.')[3];
-                data.Current = DataRecived.Split('/')[2].Split('.')[4];
+                data.WaterLevel = DataRecived.Split('/')[1].Split(',')[1];
+                data.WaterPressure = DataRecived.Split('/')[1].Split(',')[2];
+                data.WaterFlow = DataRecived.Split('/')[1].Split(',')[3];
+                data.MotorStatus = DataRecived.Split('/')[2].Split(',')[1];
+                data.Voltage = DataRecived.Split('/')[2].Split(',')[2];
+                data.MotorLoad = DataRecived.Split('/')[2].Split(',')[3];
+                data.Current = DataRecived.Split('/')[2].Split(',')[4];
                 data.CircuitData = DataRecived.Split('/')[3];
-                BindingContext = data;
+                
+
             }
             catch (Exception ex)
             {
@@ -100,23 +125,26 @@ namespace E_WELL
 
         private void BtnConnectToMqtt_Clicked(object sender, EventArgs e)
         {
-            if (btnConnectToMqtt.Icon == "plug_in.png")
+            Device.BeginInvokeOnMainThread(() =>
             {
-                Connect();
-                Subscribe();
-                if (client.IsConnected)
+                if (btnConnectToMqtt.Icon == "plug_in.png")
                 {
-                    btnConnectToMqtt.Icon = "plugOut.png";
+                    Connect();
+                    Subscribe();
+                    if (client.IsConnected)
+                    {
+                        btnConnectToMqtt.Icon = "plugOut.png";
+                    }
                 }
-            }
-            else if (btnConnectToMqtt.Icon == "plugOut.png")
-            {
-                DisconnectDevice();
-                if(client.IsConnected)
+                else if (btnConnectToMqtt.Icon == "plugOut.png")
                 {
-                    btnConnectToMqtt.Icon = "plug_in.png";
+                    DisconnectDevice();
+                    if (client.IsConnected)
+                    {
+                        btnConnectToMqtt.Icon = "plug_in.png";
+                    }
                 }
-            }
+            });
         }
 
         private void DisconnectDevice()
@@ -127,6 +155,28 @@ namespace E_WELL
 
             }
             catch (Exception ex) { }
+        }
+
+        private class CommandAction : System.Windows.Input.ICommand
+        {
+            private readonly Action<object> _onExecute;
+
+            public CommandAction(Action<object> onExecute)
+            {
+                _onExecute = onExecute;
+            }
+
+            public event EventHandler CanExecuteChanged;
+
+            public bool CanExecute(object parameter)
+            {
+                return true;
+            }
+
+            public void Execute(object parameter)
+            {
+                _onExecute(parameter);
+            }
         }
     }
 }

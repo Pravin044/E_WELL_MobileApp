@@ -7,17 +7,20 @@
         <ToolbarItem Icon="open.png" x:Name="btnImportConfig" Clicked="BtnImportConfig_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <ListView  x:Name="listView" ItemTapped="ListView_ItemTapped" BindingContext="ConfigurationModel">
+        <ListView  x:Name="listView"  BindingContext="ConfigurationModel" HasUnevenRows="True">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout>
-                        <Label x:Name="txtTitle" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White" Margin="5,0,0,0"/>
-                        <Label x:Name="txtSubtitle" Text="{Binding Subtitle}" FontSize="Small" TextColor="White" Margin="5,0,0,0"/>
+                            <StackLayout Margin="2">
+                            <Label x:Name="txtTitle" Text="{Binding Title}" FontSize="Medium" FontAttributes="Bold" TextColor="White" Margin="5,0,0,0"/>
+                            </StackLayout>
+                            <StackLayout Margin="2">
+                            <Editor x:Name="txtSubtitle" Text="{Binding Subtitle}" FontSize="Small" TextColor="White" Margin="5,0,0,0" VerticalOptions="Start" />
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
-              
             </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>

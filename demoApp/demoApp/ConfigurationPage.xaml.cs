@@ -1,9 +1,9 @@
 ﻿using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
-using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Xml;
 using Xamarin.Forms;
@@ -19,6 +19,7 @@ namespace E_WELL
         private FileData file;
         ConfigurationModel ConfigurationModel = new ConfigurationModel();
         ObservableCollection<ConfigurationModel> list = new ObservableCollection<ConfigurationModel>();
+        List<string> title = new List<string>() { "Name", "MobileNumber", "EmailAddress", "Broker" };
         string path = @"/storage/emulated/0/EWell/";
         public ConfigurationPage()
         {
@@ -29,22 +30,30 @@ namespace E_WELL
 
         private void loadConfiguration()
         {
-            listView.ItemsSource = null;
-            list.Clear();
-            listView.ItemsSource = list;
-
-            string filename = Path.Combine(path, "Configuration.xml");
-            XmlDocument xmldoc = new XmlDocument();
-            XmlNodeList xmlnode;
-            FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
-            if (fs.Length > 0)
+            try
             {
-                xmldoc.Load(fs);
-                xmlnode = xmldoc.GetElementsByTagName("Configuration");
-                for (int i = 0; i < 4; i++)
+                listView.ItemsSource = null;
+                list.Clear();
+                listView.ItemsSource = list;
+
+                string filename = Path.Combine(path, "Configuration.xml");
+                XmlDocument xmldoc = new XmlDocument();
+                XmlNodeList xmlnode;
+                FileStream fs = new FileStream(filename, FileMode.Open, FileAccess.Read);
+                if (fs.Length > 0)
                 {
-                    list.Add(new ConfigurationModel { Title = xmlnode[0].ChildNodes.Item(i).Name, Subtitle = xmlnode[0].ChildNodes.Item(i).InnerText });
+                    xmldoc.Load(fs);
+                    xmlnode = xmldoc.GetElementsByTagName("Configuration");
+                    for (int i = 0; i < title.Count; i++)
+                    {
+                        list.Add(new ConfigurationModel { Title = title[i], Subtitle = xmlnode[0].ChildNodes.Item(i).InnerText });
+                    }
                 }
+                fs.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
             }
 
         }
@@ -54,8 +63,8 @@ namespace E_WELL
             try
             {
 
-                data.Path = file.FilePath.Replace(file.FileName, "");
-                var filename = Path.Combine(data.Path, "Configuration.xml");
+
+                var filename = Path.Combine(path, "Configuration.xml");
                 using (XmlWriter writer = XmlWriter.Create(filename))
                 {
                     writer.WriteStartElement("Configuration");
@@ -77,7 +86,10 @@ namespace E_WELL
                 }
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
 
 
         }
@@ -101,7 +113,7 @@ namespace E_WELL
                         {
                             xmldoc.Load(fs);
                             xmlnode = xmldoc.GetElementsByTagName("Configuration");
-                            for (int i = 0; i < 4; i++)
+                            for (int i = 0; i < xmlnode[0].ChildNodes.Count; i++)
                             {
                                 list.Add(new ConfigurationModel { Title = xmlnode[0].ChildNodes.Item(i).Name, Subtitle = xmlnode[0].ChildNodes.Item(i).InnerText });
                             }
@@ -109,21 +121,24 @@ namespace E_WELL
                     }
                     else
                     {
-                       await DisplayAlert("E_WELL", "Invalid file","OK");
+                        await DisplayAlert("E_WELL", "Invalid file", "OK");
                     }
 
                 }
 
             }
-            catch (Exception ex) { }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var value = listView.SelectedItem as ConfigurationModel;
-            PopupNavigation.Instance.PushAsync(new Popup(value.Title,value.Subtitle));
+        //private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    var value = listView.SelectedItem as ConfigurationModel;
+        //    PopupNavigation.Instance.PushAsync(new Popup(value.Title,value.Subtitle));
 
-        }
+        //}
 
         //private void TxtName_TextChanged(object sender, TextChangedEventArgs e)
         //{

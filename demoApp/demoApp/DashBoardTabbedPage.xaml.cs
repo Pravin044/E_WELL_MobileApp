@@ -15,9 +15,9 @@ namespace E_WELL
         public DashBoardTabbedPage ()
         {
             InitializeComponent();
-            Children.Add(new DashBoard());
-            Children.Add(new DashBoard());
-            Children.Add(new DashBoard());
+            Children.Add(new WaterLevelGraphical());
+            Children.Add(new MotorStatusGraphical());
+           
         }
     }
 }

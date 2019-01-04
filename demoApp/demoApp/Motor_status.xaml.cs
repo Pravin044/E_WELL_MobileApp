@@ -20,12 +20,17 @@ namespace E_WELL
         {
             if(btnStart.Image=="start.png")
             {
-                btnStart.Image = "Stop_new.png";
-
+                if(BindingContext is DataInformation information)
+                {
+                    information.SendEvent.Execute(1);
+                }
             }
             else if(btnStart.Image=="Stop_new.png")
             {
-                btnStart.Image = "start.png";
+                if (BindingContext is DataInformation information)
+                {
+                    information.SendEvent.Execute(0);
+                }
             }
         }
     }

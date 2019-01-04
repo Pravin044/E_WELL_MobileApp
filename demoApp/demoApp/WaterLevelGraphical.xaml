@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:Class="E_WELL.DashBoard"
-              Title="DashBoard" Padding="5" BackgroundImage="BackgroundImage.jpg" >
+             xmlns:microcharts="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms" x:Class="E_WELL.WaterLevelGraphical"
+              Title="Motor Status " Padding="5" BackgroundImage="BackgroundImage.jpg" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

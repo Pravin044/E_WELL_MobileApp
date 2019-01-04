@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Editor x:Name="txtTextAdd"  />
-            <Button x:Name="btnAddTest" Text="Add text" Clicked="BtnAddTest_Clicked" />
+            <Button x:Name="btnAddTest" Text="Add Alert" Clicked="BtnAddTest_Clicked" />
             <Label x:Name="txtlabel"  Text="{Binding Label}" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" />
 
 		</StackLayout>

@@ -3,8 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="E_WELL.AboutPage" Title="About" BackgroundImage="BackgroundImage.jpg" >
     <ContentPage.Content>
-        <StackLayout>
-           
-        </StackLayout>
+        <Frame HorizontalOptions="CenterAndExpand" Padding="60" VerticalOptions="CenterAndExpand">
+            <StackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Nero - Tracker"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Version : "/>
+                            <Span Text="1.2.0.1" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Developer : "/>
+                            <Span Text="Praveen" FontAttributes="Bold"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+        </Frame>
     </ContentPage.Content>
 </ContentPage>

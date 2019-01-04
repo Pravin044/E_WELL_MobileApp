@@ -1,40 +1,50 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 
 namespace E_WELL
 {
     class DataInformation : INotifyPropertyChanged
     {
-        private string _motorData="0";
+        private string _motorStatus = "Started";
         private string _waterData = "0";
         private string _circuitData = "0";
         private string _fuseOneStatus = "BAD";
         private string _fuseTwoStatus = "BAD";
         private string _fuseThreeStatus = "BAD";
-        private string _voltage ="0";
-        private string _current ="0";
-        private string _motorLoad ="0";
+        private string _voltage = "0";
+        private string _currentMotorStatus = "1";
+        private string _current = "0";
+        private string _motorLoad = "0";
         private string _path;
-        private string _waterLevel ="0";
-        private string _waterPressure ="0";
+        private string _motoStatusIcon = "Stop_new.png";
+        private string _waterLevel = "0";
+        private string _waterPressure = "0";
         private string _waterFlow = "0";
 
         public string MotorStatus
         {
             get
             {
-                if (_motorData == "1")
-                {
-                    return _motorData = "Running";
-                }
-                else
-                {
-                    return _motorData = "Stoped";
-                }
+                return _motorStatus;
             }
             set
             {
-                _motorData = value;
-                OnPropertyChanged(nameof(MotorStatus));
+                if (_currentMotorStatus != value)
+                {
+                    _currentMotorStatus = value;
+                    if (value == "1")
+                    {
+                        value = "Running";
+                        MotoStatusIcon = "Stop_new.png";
+                    }
+                    else
+                    {
+                        value = "Stoped";
+                        MotoStatusIcon = "start.png";
+                    }
+                    _motorStatus = value;
+                    OnPropertyChanged(nameof(MotorStatus));
+                }
             }
         }
 
@@ -133,7 +143,7 @@ namespace E_WELL
                 _circuitData = value;
                 OnPropertyChanged(nameof(CircuitData));
 
-                if (_circuitData.Split('.')[1] == "1")
+                if (_circuitData.Split(',')[1] == "1")
                 {
                     FuseOneStatus = "GOOD";
                 }
@@ -141,7 +151,7 @@ namespace E_WELL
                 {
                     FuseOneStatus = "BAD";
                 }
-                if (_circuitData.Split('.')[2] == "1")
+                if (_circuitData.Split(',')[2] == "1")
                 {
                     FuseTwoStatus = "GOOD";
                 }
@@ -149,7 +159,7 @@ namespace E_WELL
                 {
                     FuseTwoStatus = "BAD";
                 }
-                if (_circuitData.Split('.')[3] == "1")
+                if (_circuitData.Split(',')[3] == "1")
                 {
                     FuseThreeStatus = "GOOD";
                 }
@@ -185,6 +195,16 @@ namespace E_WELL
             {
                 _fuseThreeStatus = value;
                 OnPropertyChanged(nameof(FuseThreeStatus));
+            }
+        }
+
+        public ICommand SendEvent { get; set; }
+        public string MotoStatusIcon
+        {
+            get => _motoStatusIcon; set
+            {
+                _motoStatusIcon = value;
+                OnPropertyChanged(nameof(MotoStatusIcon));
             }
         }
 
